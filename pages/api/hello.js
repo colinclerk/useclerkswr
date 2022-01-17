@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
-}
+import { requireSession } from "@clerk/nextjs/api";
+export default requireSession((req, res) => {
+  res.status(200).json({ userId: req.session.userId });
+});
